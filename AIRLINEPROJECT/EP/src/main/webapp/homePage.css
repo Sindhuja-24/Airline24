@@ -1,0 +1,148 @@
+/* Hero Section */
+.hero-section {
+  height: 100vh;
+  background-image: url('https://i.pinimg.com/originals/94/3c/ce/943cce9a94bc0296b52bf5a3360d6125.jpg'); /* Update to your local image path */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-content {
+  text-align: center;
+  color: #ffffff;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.search-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.search-form input,
+.search-form select,
+.search-form button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.search-form input,
+.search-form select {
+  width: 180px;
+}
+
+.search-form button {
+  background-color: #1e40af;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+/* Featured Destinations Section */
+.featured-destinations {
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.featured-destinations h2 {
+  font-size: 2rem;
+  color: #1e40af;
+  margin-bottom: 2rem;
+}
+
+.destinations-container {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.destination-card {
+  width: 280px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.destination-card:hover {
+  transform: scale(1.05);
+}
+
+.destination-image {
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Update to local image paths or correct URLs */
+.destination-card .destination-image:nth-child(1) {
+  background-image: url('images/paris.jpg');
+}
+
+.destination-card .destination-image:nth-child(2) {
+  background-image: url('images/tokyo.jpg');
+}
+
+.destination-card .destination-image:nth-child(3) {
+  background-image: url('images/new-york.jpg');
+}
+
+.destination-details {
+  padding: 1rem;
+  text-align: center;
+}
+
+.destination-details h3 {
+  font-size: 1.5rem;
+  color: #1e40af;
+}
+
+.destination-details p {
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+.price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #1e40af;
+  margin-right: 1rem;
+}
+
+.book-button {
+  padding: 0.5rem 1rem;
+  background-color: #1e40af;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.book-button:hover {
+  background-color: #1c3a96;
+}

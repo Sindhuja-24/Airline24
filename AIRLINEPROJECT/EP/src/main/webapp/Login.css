@@ -1,0 +1,115 @@
+/* General page styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: url('https://img.freepik.com/free-photo/background-gradient-lights_23-2149304985.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Stacking of content */
+    align-items: center;
+    justify-content: flex-start; /* Keeps content starting from the top */
+    min-height: 100vh; /* Takes up at least full screen height */
+    padding-top: 80px; /* Ensures there's space at the top for the fixed navbar */
+}
+
+/* Navigation Bar (Fixed at top) */
+nav.main-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    z-index: 1000; /* Keeps navbar above all content */
+    padding: 10px 0;
+}
+
+nav.main-menu ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+}
+
+nav.main-menu ul li {
+    margin: 0 15px;
+}
+
+nav.main-menu ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+}
+
+nav.main-menu ul li a:hover {
+    background-color: #007bff;
+    border-radius: 5px;
+}
+
+/* Login Form Container */
+.container {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+}
+
+h1 {
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+button,
+input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+p {
+    margin-top: 15px;
+}
+
+p a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}

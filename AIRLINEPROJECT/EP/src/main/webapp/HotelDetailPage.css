@@ -1,0 +1,155 @@
+/* Apply background image to the entire body */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('https://sochiot.com/wp-content/uploads/2022/07/smart_hotel_alisan.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Page Container */
+.page-container {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Content Container */
+.content-container {
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  border-radius: 10px;
+  padding: 40px;
+  width: 100%;
+  max-width: 900px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Hotel Info */
+.hotel-info h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.hotel-info p {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.amenities {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.amenities span {
+  font-size: 14px;
+  color: #007bff;
+  background-color: #e9f7fe;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/* Room Categories */
+.room-categories {
+  margin-top: 40px;
+}
+
+.room-category {
+  margin-bottom: 40px;
+}
+
+.room-category h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.room-category p {
+  font-size: 16px;
+  color: #777;
+}
+
+/* Room Details */
+.room {
+  display: flex;
+  margin-top: 20px;
+}
+
+.room img {
+  width: 50%;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.room-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.room-details h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.room-details p {
+  font-size: 16px;
+  color: #444;
+}
+
+.room-details button {
+  padding: 10px;
+  margin-top: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.room-details button:hover {
+  background-color: #0056b3;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.hidden {
+  display: none;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  color: #333;
+  cursor: pointer;
+}
