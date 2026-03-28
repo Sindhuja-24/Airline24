@@ -61,7 +61,17 @@ body {
   background-color: #3b82f6;
   color: white;
   text-align: center;
+  border: none;
   border-radius: 0.5rem;
   cursor: pointer;
   font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.btn-submit:hover {
+  background-color: #2563eb;
+}
+
+.btn-submit:active {
+  background-color: #1d4ed8;
 }
