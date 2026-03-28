@@ -1,0 +1,85 @@
+ body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+        .search-bar {
+            display: flex;
+            justify-content: space-between;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .search-bar input, .search-bar select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 18%;
+        }
+        .search-bar input[type="date"] {
+            width: 15%;
+        }
+        .search-bar .fa-calendar-alt, .search-bar .fa-user {
+            margin-left: 10px;
+        }
+        .flight-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .flight-card .flight-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .flight-card .flight-info div {
+            flex: 1;
+        }
+        .flight-card .flight-info div:nth-child(2) {
+            text-align: center;
+        }
+        .flight-card .flight-info div:nth-child(3) {
+            text-align: right;
+        }
+        .flight-card .flight-info .price {
+            color: #007bff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .flight-card .flight-info .book-btn {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .flight-card .flight-info .book-btn:hover {
+            background-color: #0056b3;
+        }
+        .flight-card .flight-details {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .flight-card .flight-details div {
+            flex: 1;
+        }
+        .flight-card .flight-details div:nth-child(2) {
+            text-align: center;
+        }
+        .flight-card .flight-details div:nth-child(3) {
+            text-align: right;
+        }
+        .flight-card .flight-details .seats-left {
+            color: #888;
+        }

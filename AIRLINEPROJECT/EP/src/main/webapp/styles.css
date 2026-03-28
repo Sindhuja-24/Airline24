@@ -1,0 +1,165 @@
+/* Global Styles */
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --text-dark: #ffffff;
+    --text-light: #408080;
+    --bg-light: #a679a4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+    color: var(--text-dark);
+    background-color:#d1c5c5;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    position: relative;
+    background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom right, rgba(0,0,0,0.6), rgba(0,0,0,0.4));
+    backdrop-filter: blur(2px);
+}
+
+.hero-content {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 0 1rem;
+}
+
+/* Header */
+.header {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.header h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.header p {
+    font-size: 1.125rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* Features Section */
+.features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 4rem 1rem;
+    background-color: var(--bg-light);
+}
+
+.feature {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.feature:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1rem;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.globe {
+    background-image: url('https://img.icons8.com/ios-filled/50/ffffff/globe.png');
+    background-size: cover;
+}
+
+.shield {
+    background-image: url('https://img.icons8.com/ios-filled/50/ffffff/shield.png');
+    background-size: cover;
+}
+
+.clock {
+    background-image: url('https://img.icons8.com/ios-filled/50/ffffff/clock.png');
+    background-size: cover;
+}
+
+.credit-card {
+    background-image: url('https://img.icons8.com/ios-filled/50/ffffff/credit-card.png');
+    background-size: cover;
+}
+
+.feature h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.feature p {
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* Our Story Section */
+.story {
+    padding: 4rem 1rem;
+    background-color: var(--bg-light);
+}
+
+.story h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.story p {
+    font-size: 1.125rem;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+}
