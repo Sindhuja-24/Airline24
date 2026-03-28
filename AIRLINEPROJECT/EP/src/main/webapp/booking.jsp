@@ -93,7 +93,7 @@
           </div>
         </div>
 
-        <a href="PaymentPage.jsp"><button type="submit" class="btn-submit">Proceed to Payment</button>
+        <button type="submit" class="btn-submit">Proceed to Payment</button>
       </form>
     </div>
   </div>

@@ -107,11 +107,14 @@
   <script>
   document.getElementById("payment-form").addEventListener("submit", function (e) {
     e.preventDefault();
-    document.getElementById("submit-btn").innerHTML = "Processing Payment...";
+    const submitBtn = document.getElementById("submit-btn");
+    submitBtn.innerHTML = "Processing Payment...";
+    submitBtn.disabled = true;
+    submitBtn.classList.add("opacity-75", "cursor-not-allowed");
 
     setTimeout(() => {
       // Simulate successful payment and redirect to the Payment Success page
-      window.location.href = "PaymentSuccessPage.jsp"; // Update this URL to the actual location of your Payment Success page
+      window.location.href = "PaymentSuccessPage.jsp";
     }, 2000);
   });
 </script>
