@@ -52,8 +52,6 @@
           </div>
         </div>
 
-        <a href="HotelBookingSuccess.jsp">
-
         <button type="submit" id="pay-button">Pay $200</button>
       </form>
 
@@ -62,5 +60,21 @@
       </div>
     </div>
   </div>
+
+  <script>
+    document.getElementById("payment-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const submitBtn = document.getElementById("pay-button");
+      submitBtn.innerHTML = "Processing Payment...";
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = "0.6";
+      submitBtn.style.cursor = "not-allowed";
+
+      setTimeout(() => {
+        // Simulate successful payment and redirect to the Hotel Booking Success page
+        window.location.href = "HotelBookingSuccess.jsp";
+      }, 2000);
+    });
+  </script>
 </body>
 </html>
