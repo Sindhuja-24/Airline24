@@ -107,7 +107,10 @@
   <script>
   document.getElementById("payment-form").addEventListener("submit", function (e) {
     e.preventDefault();
-    document.getElementById("submit-btn").innerHTML = "Processing Payment...";
+    const submitBtn = document.getElementById("submit-btn");
+    submitBtn.innerHTML = "Processing Payment...";
+    submitBtn.disabled = true;
+    submitBtn.classList.add("cursor-not-allowed", "opacity-75");
 
     setTimeout(() => {
       // Simulate successful payment and redirect to the Payment Success page
