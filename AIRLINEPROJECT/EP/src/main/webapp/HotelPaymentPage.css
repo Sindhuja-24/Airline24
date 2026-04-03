@@ -109,3 +109,11 @@ button:disabled {
   color: #007bff;
   text-align: center;
 }
+
+.opacity-75 {
+  opacity: 0.75;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed;
+}

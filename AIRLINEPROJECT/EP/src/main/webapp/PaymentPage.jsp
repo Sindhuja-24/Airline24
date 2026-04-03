@@ -44,18 +44,16 @@
           <div class="space-y-4">
             <!-- Card Number -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Card Number</label>
+              <label for="card-number" class="block text-sm font-medium text-gray-700 mb-1">Card Number</label>
               <div class="relative">
                 <input required type="text" maxLength="19" placeholder="1234 5678 9012 3456" id="card-number" class="w-full pl-10 pr-3 py-2 border rounded-md" />
-                <svg class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <path d="M12 5c4.418 0 8 3.582 8 8s-3.582 8-8 8S4 13.418 4 9s3.582-8 8-8zM12 7v6h6M12 7l-6 6"></path>
-                </svg>
+                <i data-lucide="credit-card" class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" aria-hidden="true"></i>
               </div>
             </div>
 
             <!-- Cardholder Name -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Cardholder Name</label>
+              <label for="card-name" class="block text-sm font-medium text-gray-700 mb-1">Cardholder Name</label>
               <input required type="text" placeholder="JOHN DOE" id="card-name" class="w-full p-2 border rounded-md" />
             </div>
 
@@ -63,23 +61,19 @@
             <div class="grid grid-cols-2 gap-4">
               <!-- Expiry Date -->
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Expiry Date</label>
+                <label for="expiry-date" class="block text-sm font-medium text-gray-700 mb-1">Expiry Date</label>
                 <div class="relative">
                   <input required type="text" placeholder="MM/YY" maxLength="5" id="expiry-date" class="w-full pl-10 pr-3 py-2 border rounded-md" />
-                  <svg class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M12 5c4.418 0 8 3.582 8 8s-3.582 8-8 8S4 13.418 4 9s3.582-8 8-8zM12 7v6h6M12 7l-6 6"></path>
-                  </svg>
+                  <i data-lucide="calendar" class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" aria-hidden="true"></i>
                 </div>
               </div>
 
               <!-- CVV -->
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">CVV</label>
+                <label for="cvv" class="block text-sm font-medium text-gray-700 mb-1">CVV</label>
                 <div class="relative">
                   <input required type="password" maxLength="3" placeholder="123" id="cvv" class="w-full pl-10 pr-3 py-2 border rounded-md" />
-                  <svg class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M12 5c4.418 0 8 3.582 8 8s-3.582 8-8 8S4 13.418 4 9s3.582-8 8-8zM12 7v6h6M12 7l-6 6"></path>
-                  </svg>
+                  <i data-lucide="lock" class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" aria-hidden="true"></i>
                 </div>
               </div>
             </div>
@@ -95,9 +89,7 @@
       <!-- Security Message -->
       <div class="bg-blue-50 rounded-lg p-4">
         <p class="text-sm text-blue-800">
-          <svg class="inline-block h-4 w-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M12 5c4.418 0 8 3.582 8 8s-3.582 8-8 8S4 13.418 4 9s3.582-8 8-8zM12 7v6h6M12 7l-6 6"></path>
-          </svg>
+          <i data-lucide="lock" class="inline-block h-4 w-4 mr-1" aria-hidden="true"></i>
           Your payment information is secure and encrypted
         </p>
       </div>
@@ -105,16 +97,63 @@
   </div>
 
   <script>
-  document.getElementById("payment-form").addEventListener("submit", function (e) {
-    e.preventDefault();
-    document.getElementById("submit-btn").innerHTML = "Processing Payment...";
+    // Initialize Lucide icons
+    lucide.createIcons();
 
-    setTimeout(() => {
-      // Simulate successful payment and redirect to the Payment Success page
-      window.location.href = "PaymentSuccessPage.jsp"; // Update this URL to the actual location of your Payment Success page
-    }, 2000);
-  });
-</script>
+    // Card number masking (4-4-4-4)
+    document.getElementById('card-number').addEventListener('input', function (e) {
+      let cursor = e.target.selectionStart;
+      let value = e.target.value.replace(/\D/g, '');
+      let formattedValue = '';
+      for (let i = 0; i < value.length; i++) {
+        if (i > 0 && i % 4 === 0) formattedValue += ' ';
+        formattedValue += value[i];
+      }
+
+      let oldLength = e.target.value.length;
+      e.target.value = formattedValue;
+      let newLength = formattedValue.length;
+
+      // Adjust cursor position
+      if (cursor < oldLength) {
+        e.target.setSelectionRange(cursor, cursor);
+      }
+    });
+
+    // Expiry date masking (MM/YY)
+    document.getElementById('expiry-date').addEventListener('input', function (e) {
+      let cursor = e.target.selectionStart;
+      let value = e.target.value.replace(/\D/g, '');
+      let formattedValue = value;
+
+      if (value.length > 2) {
+        formattedValue = value.slice(0, 2) + '/' + value.slice(2, 4);
+      } else if (value.length === 2 && e.inputType !== 'deleteContentBackward') {
+        formattedValue = value + '/';
+      }
+
+      let oldLength = e.target.value.length;
+      e.target.value = formattedValue;
+
+      // Adjust cursor position if not at the end
+      if (cursor < oldLength) {
+        e.target.setSelectionRange(cursor, cursor);
+      }
+    });
+
+    document.getElementById("payment-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const submitBtn = document.getElementById("submit-btn");
+      submitBtn.innerHTML = "Processing Payment...";
+      submitBtn.disabled = true;
+      submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+
+      setTimeout(() => {
+        // Simulate successful payment and redirect to the Payment Success page
+        window.location.href = "PaymentSuccessPage.jsp";
+      }, 2000);
+    });
+  </script>
 
 </body>
 </html>
