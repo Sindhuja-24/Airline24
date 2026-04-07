@@ -103,6 +103,14 @@ button:disabled {
   cursor: not-allowed;
 }
 
+.opacity-75 {
+  opacity: 0.75;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
 .secure-info {
   margin-top: 15px;
   font-size: 14px;
