@@ -44,7 +44,7 @@
           <div class="space-y-4">
             <!-- Card Number -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Card Number</label>
+              <label for="card-number" class="block text-sm font-medium text-gray-700 mb-1">Card Number</label>
               <div class="relative">
                 <input required type="text" maxLength="19" placeholder="1234 5678 9012 3456" id="card-number" class="w-full pl-10 pr-3 py-2 border rounded-md" />
                 <svg class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -55,7 +55,7 @@
 
             <!-- Cardholder Name -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Cardholder Name</label>
+              <label for="card-name" class="block text-sm font-medium text-gray-700 mb-1">Cardholder Name</label>
               <input required type="text" placeholder="JOHN DOE" id="card-name" class="w-full p-2 border rounded-md" />
             </div>
 
@@ -63,7 +63,7 @@
             <div class="grid grid-cols-2 gap-4">
               <!-- Expiry Date -->
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Expiry Date</label>
+                <label for="expiry-date" class="block text-sm font-medium text-gray-700 mb-1">Expiry Date</label>
                 <div class="relative">
                   <input required type="text" placeholder="MM/YY" maxLength="5" id="expiry-date" class="w-full pl-10 pr-3 py-2 border rounded-md" />
                   <svg class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -74,7 +74,7 @@
 
               <!-- CVV -->
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">CVV</label>
+                <label for="cvv" class="block text-sm font-medium text-gray-700 mb-1">CVV</label>
                 <div class="relative">
                   <input required type="password" maxLength="3" placeholder="123" id="cvv" class="w-full pl-10 pr-3 py-2 border rounded-md" />
                   <svg class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -113,6 +113,37 @@
       // Simulate successful payment and redirect to the Payment Success page
       window.location.href = "PaymentSuccessPage.jsp"; // Update this URL to the actual location of your Payment Success page
     }, 2000);
+  });
+
+  const cardNumber = document.getElementById('card-number');
+  cardNumber.addEventListener('input', (e) => {
+    const target = e.target;
+    const position = target.selectionStart;
+    const length = target.value.length;
+
+    target.value = target.value.replace(/\D/g, '').replace(/(.{4})/g, '$1 ').trim().substring(0, 19);
+
+    const newLength = target.value.length;
+    const nextPosition = position + (newLength - length);
+    target.setSelectionRange(nextPosition, nextPosition);
+  });
+
+  const expiryDate = document.getElementById('expiry-date');
+  expiryDate.addEventListener('input', (e) => {
+    const target = e.target;
+    const position = target.selectionStart;
+    const length = target.value.length;
+
+    let value = target.value.replace(/\D/g, '');
+    if (value.length > 2) {
+      target.value = value.substring(0, 2) + '/' + value.substring(2, 4);
+    } else {
+      target.value = value;
+    }
+
+    const newLength = target.value.length;
+    const nextPosition = position + (newLength - length);
+    target.setSelectionRange(nextPosition, nextPosition);
   });
 </script>
 
