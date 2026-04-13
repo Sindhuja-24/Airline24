@@ -23,36 +23,34 @@
 
       <form id="payment-form">
         <div class="form-group">
-          <label>Card Number</label>
+          <label for="cardNumber">Card Number</label>
           <div class="input-container">
-            <input type="text" placeholder="1234 5678 9012 3456" maxlength="19" required>
+            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
             <span class="icon">&#128179;</span>
           </div>
         </div>
 
         <div class="form-group">
-          <label>Cardholder Name</label>
-          <input type="text" placeholder="JOHN DOE" required>
+          <label for="cardName">Cardholder Name</label>
+          <input type="text" id="cardName" placeholder="JOHN DOE" required>
         </div>
 
         <div class="form-row">
           <div class="form-group">
-            <label>Expiry Date</label>
+            <label for="expiryDate">Expiry Date</label>
             <div class="input-container">
-              <input type="text" placeholder="MM/YY" maxlength="5" required>
+              <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5" required>
               <span class="icon">&#128197;</span>
             </div>
           </div>
           <div class="form-group">
-            <label>CVV</label>
+            <label for="cvv">CVV</label>
             <div class="input-container">
-              <input type="password" maxlength="3" placeholder="123" required>
+              <input type="password" id="cvv" maxlength="3" placeholder="123" required>
               <span class="icon">&#128274;</span>
             </div>
           </div>
         </div>
-
-        <a href="HotelBookingSuccess.jsp">
 
         <button type="submit" id="pay-button">Pay $200</button>
       </form>
@@ -62,5 +60,20 @@
       </div>
     </div>
   </div>
+  <script>
+    const mask = (e, p) => {
+      let v = e.target.value.replace(/\D/g, ''), out = '', i = 0;
+      for (const c of p) { if (i >= v.length) break; out += (c === 'X') ? v[i++] : c; }
+      e.target.value = out;
+    };
+    document.getElementById('cardNumber').addEventListener('input', e => mask(e, 'XXXX XXXX XXXX XXXX'));
+    document.getElementById('expiryDate').addEventListener('input', e => mask(e, 'XX/XX'));
+    document.getElementById('payment-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const b = document.getElementById('pay-button');
+      b.disabled = true; b.textContent = 'Processing...';
+      setTimeout(() => window.location.href = 'HotelBookingSuccess.jsp', 1500);
+    });
+  </script>
 </body>
 </html>
