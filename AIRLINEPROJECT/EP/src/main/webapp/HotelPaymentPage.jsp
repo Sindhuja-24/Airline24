@@ -21,38 +21,36 @@
         <p class="room-price">$200</p>
       </div>
 
-      <form id="payment-form">
+      <form id="payment-form" action="HotelBookingSuccess.jsp" method="POST">
         <div class="form-group">
-          <label>Card Number</label>
+          <label for="card-number">Card Number</label>
           <div class="input-container">
-            <input type="text" placeholder="1234 5678 9012 3456" maxlength="19" required>
-            <span class="icon">&#128179;</span>
+            <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19" required>
+            <span class="icon" aria-hidden="true">&#128179;</span>
           </div>
         </div>
 
         <div class="form-group">
-          <label>Cardholder Name</label>
-          <input type="text" placeholder="JOHN DOE" required>
+          <label for="card-name">Cardholder Name</label>
+          <input type="text" id="card-name" placeholder="JOHN DOE" required>
         </div>
 
         <div class="form-row">
           <div class="form-group">
-            <label>Expiry Date</label>
+            <label for="expiry-date">Expiry Date</label>
             <div class="input-container">
-              <input type="text" placeholder="MM/YY" maxlength="5" required>
-              <span class="icon">&#128197;</span>
+              <input type="text" id="expiry-date" placeholder="MM/YY" maxlength="5" required>
+              <span class="icon" aria-hidden="true">&#128197;</span>
             </div>
           </div>
           <div class="form-group">
-            <label>CVV</label>
+            <label for="cvv">CVV</label>
             <div class="input-container">
-              <input type="password" maxlength="3" placeholder="123" required>
-              <span class="icon">&#128274;</span>
+              <input type="password" id="cvv" maxlength="3" placeholder="123" required>
+              <span class="icon" aria-hidden="true">&#128274;</span>
             </div>
           </div>
         </div>
-
-        <a href="HotelBookingSuccess.jsp">
 
         <button type="submit" id="pay-button">Pay $200</button>
       </form>
@@ -62,5 +60,29 @@
       </div>
     </div>
   </div>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    const format = (el, fn) => {
+      const start = el.selectionStart, oldLen = el.value.length;
+      el.value = fn(el.value);
+      el.selectionStart = el.selectionEnd = start + (el.value.length - oldLen);
+    };
+    $('card-number').oninput = e => format(e.target, v => {
+      let d = v.replace(/\D/g, ''), f = '';
+      for (let i = 0; i < d.length && i < 16; i++) f += (i > 0 && i % 4 === 0 ? ' ' : '') + d[i];
+      return f;
+    });
+    $('expiry-date').oninput = e => format(e.target, v => {
+      let d = v.replace(/\D/g, '');
+      return d.length > 2 ? d.slice(0, 2) + '/' + d.slice(2, 4) : d;
+    });
+    $('payment-form').onsubmit = e => {
+      e.preventDefault();
+      $('pay-button').disabled = true;
+      $('pay-button').textContent = 'Processing...';
+      setTimeout(() => window.location.href = "HotelBookingSuccess.jsp", 1500);
+    };
+  </script>
 </body>
 </html>
