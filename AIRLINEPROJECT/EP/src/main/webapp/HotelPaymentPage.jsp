@@ -23,44 +23,57 @@
 
       <form id="payment-form">
         <div class="form-group">
-          <label>Card Number</label>
+          <label for="card-number">Card Number</label>
           <div class="input-container">
-            <input type="text" placeholder="1234 5678 9012 3456" maxlength="19" required>
-            <span class="icon">&#128179;</span>
+            <input id="card-number" type="text" placeholder="1234 5678 9012 3456" maxlength="19" required>
+            <span class="icon" aria-hidden="true">&#128179;</span>
           </div>
         </div>
-
         <div class="form-group">
-          <label>Cardholder Name</label>
-          <input type="text" placeholder="JOHN DOE" required>
+          <label for="card-name">Cardholder Name</label>
+          <input id="card-name" type="text" placeholder="JOHN DOE" required>
         </div>
-
         <div class="form-row">
           <div class="form-group">
-            <label>Expiry Date</label>
+            <label for="expiry-date">Expiry Date</label>
             <div class="input-container">
-              <input type="text" placeholder="MM/YY" maxlength="5" required>
-              <span class="icon">&#128197;</span>
+              <input id="expiry-date" type="text" placeholder="MM/YY" maxlength="5" required>
+              <span class="icon" aria-hidden="true">&#128197;</span>
             </div>
           </div>
           <div class="form-group">
-            <label>CVV</label>
+            <label for="cvv">CVV</label>
             <div class="input-container">
-              <input type="password" maxlength="3" placeholder="123" required>
-              <span class="icon">&#128274;</span>
+              <input id="cvv" type="password" maxlength="3" placeholder="123" required>
+              <span class="icon" aria-hidden="true">&#128274;</span>
             </div>
           </div>
         </div>
-
-        <a href="HotelBookingSuccess.jsp">
-
         <button type="submit" id="pay-button">Pay $200</button>
       </form>
-
-      <div class="secure-info">
-        <p>&#128274; Your payment information is secure and encrypted.</p>
-      </div>
+      <div class="secure-info"><p>&#128274; Your payment information is secure and encrypted.</p></div>
     </div>
   </div>
+  <script>
+    const fmt = (el, m, s) => {
+      el.oninput = (e) => {
+        let v = e.target.value.replace(/\D/g, ''), r = '';
+        for (let i = 0; i < v.length && i < m; i++) {
+          if (i > 0 && i % s === 0) r += (s === 4 ? ' ' : '/');
+          r += v[i];
+        }
+        const cur = e.target.selectionStart + (r.length - e.target.value.length);
+        e.target.value = r; e.target.setSelectionRange(cur, cur);
+      };
+    };
+    fmt(document.getElementById('card-number'), 16, 4);
+    fmt(document.getElementById('expiry-date'), 4, 2);
+    document.getElementById('payment-form').onsubmit = (e) => {
+      e.preventDefault();
+      const b = document.getElementById('pay-button');
+      b.disabled = true; b.textContent = 'Processing Payment...';
+      setTimeout(() => location.href = 'HotelBookingSuccess.jsp', 1500);
+    };
+  </script>
 </body>
 </html>
