@@ -52,31 +52,31 @@
         </div>
       </div>
 
-      <form action="PaymentPage.jsp" method="POST">
+      <form action="PaymentPage.jsp" method="POST" id="booking-form">
         <!-- Passenger Information Fields -->
         <c:forEach var="i" begin="0" end="${passengers - 1}">
           <div class="passenger-info bg-white rounded-lg shadow-md p-6 mb-6">
             <h3 class="text-xl font-semibold mb-4">Passenger ${i + 1}</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
-                <input type="text" name="firstName_${i}" required class="input-field" />
+                <label for="firstName_${i}" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                <input type="text" id="firstName_${i}" name="firstName_${i}" required class="input-field" />
               </div>
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
-                <input type="text" name="lastName_${i}" required class="input-field" />
+                <label for="lastName_${i}" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                <input type="text" id="lastName_${i}" name="lastName_${i}" required class="input-field" />
               </div>
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                <input type="email" name="email_${i}" required class="input-field" />
+                <label for="email_${i}" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <input type="email" id="email_${i}" name="email_${i}" required class="input-field" />
               </div>
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-                <input type="tel" name="phone_${i}" required class="input-field" />
+                <label for="phone_${i}" class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                <input type="tel" id="phone_${i}" name="phone_${i}" required class="input-field" />
               </div>
               <div class="md:col-span-2">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Passport Number</label>
-                <input type="text" name="passport_${i}" required class="input-field" />
+                <label for="passport_${i}" class="block text-sm font-medium text-gray-700 mb-1">Passport Number</label>
+                <input type="text" id="passport_${i}" name="passport_${i}" required class="input-field" />
               </div>
             </div>
           </div>
@@ -93,9 +93,19 @@
           </div>
         </div>
 
-        <a href="PaymentPage.jsp"><button type="submit" class="btn-submit">Proceed to Payment</button>
+        <button type="submit" id="submit-btn" class="btn-submit">Proceed to Payment</button>
       </form>
     </div>
   </div>
+
+  <script>
+    document.getElementById('booking-form').addEventListener('submit', function() {
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      btn.innerText = 'Processing...';
+      btn.style.opacity = '0.7';
+      btn.style.cursor = 'not-allowed';
+    });
+  </script>
 </body>
 </html>
