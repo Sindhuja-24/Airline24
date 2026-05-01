@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="Navbar.css">
   <link rel="stylesheet" href="nav.css">
 
-  <script src="https://cdn.jsdelivr.net/npm/lucide-icons@0.226.0/dist/lucide.min.js"></script>
 </head>
 <body>
 <nav class="main-menu top-menu">
@@ -40,46 +39,40 @@
         </div>
 
         <!-- Payment Form -->
-        <form id="payment-form">
+        <form id="payment-form" action="PaymentSuccessPage.jsp" method="POST">
           <div class="space-y-4">
             <!-- Card Number -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Card Number</label>
+              <label for="card-number" class="block text-sm font-medium text-gray-700 mb-1">Card Number</label>
               <div class="relative">
-                <input required type="text" maxLength="19" placeholder="1234 5678 9012 3456" id="card-number" class="w-full pl-10 pr-3 py-2 border rounded-md" />
-                <svg class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <path d="M12 5c4.418 0 8 3.582 8 8s-3.582 8-8 8S4 13.418 4 9s3.582-8 8-8zM12 7v6h6M12 7l-6 6"></path>
-                </svg>
+                <input required type="text" maxLength="19" placeholder="1234 5678 9012 3456" id="card-number" name="card-number" class="w-full pl-10 pr-3 py-2 border rounded-md" />
+                <span class="absolute left-3 top-2 h-5 w-5 text-gray-400" aria-hidden="true">💳</span>
               </div>
             </div>
 
             <!-- Cardholder Name -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Cardholder Name</label>
-              <input required type="text" placeholder="JOHN DOE" id="card-name" class="w-full p-2 border rounded-md" />
+              <label for="card-name" class="block text-sm font-medium text-gray-700 mb-1">Cardholder Name</label>
+              <input required type="text" placeholder="JOHN DOE" id="card-name" name="card-name" class="w-full p-2 border rounded-md" />
             </div>
 
             <!-- Expiry and CVV -->
             <div class="grid grid-cols-2 gap-4">
               <!-- Expiry Date -->
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Expiry Date</label>
+                <label for="expiry-date" class="block text-sm font-medium text-gray-700 mb-1">Expiry Date</label>
                 <div class="relative">
-                  <input required type="text" placeholder="MM/YY" maxLength="5" id="expiry-date" class="w-full pl-10 pr-3 py-2 border rounded-md" />
-                  <svg class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M12 5c4.418 0 8 3.582 8 8s-3.582 8-8 8S4 13.418 4 9s3.582-8 8-8zM12 7v6h6M12 7l-6 6"></path>
-                  </svg>
+                  <input required type="text" placeholder="MM/YY" maxLength="5" id="expiry-date" name="expiry-date" class="w-full pl-10 pr-3 py-2 border rounded-md" />
+                  <span class="absolute left-3 top-2 h-5 w-5 text-gray-400" aria-hidden="true">📅</span>
                 </div>
               </div>
 
               <!-- CVV -->
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">CVV</label>
+                <label for="cvv" class="block text-sm font-medium text-gray-700 mb-1">CVV</label>
                 <div class="relative">
-                  <input required type="password" maxLength="3" placeholder="123" id="cvv" class="w-full pl-10 pr-3 py-2 border rounded-md" />
-                  <svg class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M12 5c4.418 0 8 3.582 8 8s-3.582 8-8 8S4 13.418 4 9s3.582-8 8-8zM12 7v6h6M12 7l-6 6"></path>
-                  </svg>
+                  <input required type="password" maxLength="3" placeholder="123" id="cvv" name="cvv" class="w-full pl-10 pr-3 py-2 border rounded-md" />
+                  <span class="absolute left-3 top-2 h-5 w-5 text-gray-400" aria-hidden="true">🔒</span>
                 </div>
               </div>
             </div>
@@ -105,16 +98,37 @@
   </div>
 
   <script>
-  document.getElementById("payment-form").addEventListener("submit", function (e) {
-    e.preventDefault();
-    document.getElementById("submit-btn").innerHTML = "Processing Payment...";
+    const formatInput = (input, formatter) => {
+      input.addEventListener('input', (e) => {
+        const cursor = input.selectionStart;
+        const prevValue = input.value;
+        const formatted = formatter(prevValue);
+        input.value = formatted;
 
-    setTimeout(() => {
-      // Simulate successful payment and redirect to the Payment Success page
-      window.location.href = "PaymentSuccessPage.jsp"; // Update this URL to the actual location of your Payment Success page
-    }, 2000);
-  });
-</script>
+        const delta = formatted.length - prevValue.length;
+        if (cursor !== null) input.setSelectionRange(cursor + delta, cursor + delta);
+      });
+    };
+
+    formatInput(document.getElementById('card-number'), (v) =>
+      v.replace(/\D/g, '').replace(/(.{4})/g, '$1 ').trim().slice(0, 19)
+    );
+    formatInput(document.getElementById('expiry-date'), (v) =>
+      v.replace(/\D/g, '').replace(/^(\d{2})/, '$1/').slice(0, 5)
+    );
+
+    document.getElementById("payment-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const btn = document.getElementById("submit-btn");
+      btn.innerHTML = '<span class="opacity-75">Processing Payment...</span>';
+      btn.disabled = true;
+      btn.classList.add('cursor-not-allowed', 'opacity-75');
+
+      setTimeout(() => {
+        window.location.href = "PaymentSuccessPage.jsp";
+      }, 1500);
+    });
+  </script>
 
 </body>
 </html>
