@@ -86,22 +86,22 @@
     </nav>
 
     <div class="container">
-        <div class="search-bar">
+        <form action="flights.jsp" method="GET" class="search-bar" id="flight-search-form">
             <div>
                 <label for="from-city">From:</label>
-                <input type="text" id="from-city" placeholder="Enter departure city">
+                <input type="text" id="from-city" name="fromCity" placeholder="Enter departure city">
             </div>
             <div>
                 <label for="to-city">To:</label>
-                <input type="text" id="to-city" placeholder="Enter destination city">
+                <input type="text" id="to-city" name="toCity" placeholder="Enter destination city">
             </div>
             <div>
                 <label for="departure-date">Departure:</label>
-                <input type="date" id="departure-date" placeholder="dd-mm-yyyy">
+                <input type="date" id="departure-date" name="date" placeholder="dd-mm-yyyy">
             </div>
             <div>
                 <label for="class">Class:</label>
-                <select id="class">
+                <select id="class" name="class">
                     <option>Economy</option>
                     <option>Business</option>
                     <option>First Class</option>
@@ -109,15 +109,15 @@
             </div>
             <div>
                 <label for="passengers">Passengers:</label>
-                <select id="passengers">
+                <select id="passengers" name="passengers">
                     <option>1 Passenger</option>
                     <option>2 Passengers</option>
                     <option>3 Passengers</option>
                     <option>4 Passengers</option>
                 </select>
             </div>
-            <button class="search-button">Search</button>
-        </div>
+            <button type="submit" class="search-button" id="search-btn">Search</button>
+        </form>
 
         <!-- Flight Cards Section -->
 
@@ -251,5 +251,14 @@
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('flight-search-form')?.addEventListener('submit', function() {
+            const btn = document.getElementById('search-btn');
+            if (btn) {
+                btn.innerHTML = 'Searching...';
+                btn.disabled = true;
+            }
+        });
+    </script>
 </body>
 </html>
