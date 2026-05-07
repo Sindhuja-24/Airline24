@@ -57,6 +57,11 @@
           </select>
           <i class="lucide-users"></i>
         </div>
+
+        <div class="filter search-action">
+          <label aria-hidden="true">&nbsp;</label>
+          <button type="button" id="search-hotels-btn" class="search-btn">Search Hotels</button>
+        </div>
       </div>
     </header>
 
@@ -68,7 +73,7 @@
           <h3>Grand Plaza Hotel</h3>
           <p>Manhattan, New York</p>
           <!-- View Details Button with Redirection -->
-          <button onclick="showHotelDetails('Grand Plaza Hotel')">View Details</button>
+          <button onclick="showHotelDetails('Grand Plaza Hotel', this)">View Details</button>
         </div>
       </div>
       <div class="hotel-card">
@@ -77,7 +82,7 @@
           <h3>Skyline Suites</h3>
           <p>Brooklyn, New York</p>
           <!-- View Details Button with Redirection -->
-          <button onclick="showHotelDetails('Skyline Suites')">View Details</button>
+          <button onclick="showHotelDetails('Skyline Suites', this)">View Details</button>
         </div>
       </div>
       <div class="hotel-card">
@@ -86,18 +91,36 @@
           <h3>Harbor View Inn</h3>
           <p>Queens, New York</p>
           <!-- View Details Button with Redirection -->
-          <button onclick="showHotelDetails('Harbor View Inn')">View Details</button>
+          <button onclick="showHotelDetails('Harbor View Inn', this)">View Details</button>
         </div>
       </div>
     </section>
   </div>
 
   <script>
-    // Function to redirect to HotelDetailsPage.jsp with hotel name as a query parameter
-    function showHotelDetails(hotelName) {
-      // Redirect to HotelDetailsPage.jsp with hotel name as a URL parameter
-      window.location.href = "HotelDetailsPage.jsp";
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+
+    function showHotelDetails(name, btn) {
+      if (btn) {
+        btn.innerHTML = 'Loading...';
+        btn.disabled = true;
+        btn.classList.add('btn-loading');
+      }
+      setTimeout(() => window.location.href = "HotelDetailsPage.jsp", 500);
     }
+
+    document.getElementById('search-hotels-btn').addEventListener('click', function() {
+      const originalText = this.innerHTML;
+      this.innerHTML = 'Searching...';
+      this.disabled = true;
+      this.classList.add('btn-loading');
+
+      setTimeout(() => {
+        this.innerHTML = originalText;
+        this.disabled = false;
+        this.classList.remove('btn-loading');
+      }, 1000);
+    });
   </script>
 
 </body>
