@@ -1,3 +1,7 @@
 ## 2025-05-15 - [Improving Form Usability & Accessibility]
 **Learning:** In legacy JSP projects, nested interactive elements (like `<button>` inside `<a>`) are common but break accessibility and HTML semantics. Converting these to single, well-styled semantic elements improves screen reader compatibility and prevents unexpected behavior. Adding a simple password visibility toggle significantly enhances UX by reducing login/registration friction.
 **Action:** Always check for nested interactive elements and replace them with single semantic ones. Use vanilla JS for simple UI enhancements in projects where modern framework-based solutions aren't available.
+
+## 2026-05-10 - [Contact Form Accessibility and Feedback]
+**Learning:** The contact.jsp form had no semantic label associations or submission feedback. Linking labels with `for/id` and adding `aria-required` provides a baseline for accessibility. Providing immediate visual feedback (e.g., changing button text to "Sending..." and disabling it) prevents duplicate submissions and informs the user that their action was registered. Using a unique form ID for JS selection is more robust than generic tag selectors.
+**Action:** Ensure all form inputs have unique 'id' attributes linked to labels. Implement 'submit' event listeners on forms (targeted by ID) to provide immediate loading feedback. Use decorative emojis with `aria-hidden="true"` as lightweight alternatives to missing icon libraries.
