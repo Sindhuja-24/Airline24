@@ -32,19 +32,19 @@
         <div class="filter">
           <label for="location">Location</label>
           <input type="text" id="location" value="New York">
-          <i class="lucide-map-pin"></i>
+          <i data-lucide="map-pin"></i>
         </div>
 
         <div class="filter">
           <label for="check-in">Check-in</label>
           <input type="date" id="check-in">
-          <i class="lucide-calendar"></i>
+          <i data-lucide="calendar"></i>
         </div>
 
         <div class="filter">
           <label for="check-out">Check-out</label>
           <input type="date" id="check-out">
-          <i class="lucide-calendar"></i>
+          <i data-lucide="calendar"></i>
         </div>
 
         <div class="filter">
@@ -55,7 +55,12 @@
             <option value="3">3 Guests</option>
             <option value="4">4 Guests</option>
           </select>
-          <i class="lucide-users"></i>
+          <i data-lucide="users"></i>
+        </div>
+
+        <div class="filter search-btn-wrapper">
+          <label>&nbsp;</label>
+          <button type="button" id="search-hotels-btn" class="search-hotels-btn">Search Hotels</button>
         </div>
       </div>
     </header>
@@ -93,10 +98,25 @@
   </div>
 
   <script>
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+
     // Function to redirect to HotelDetailsPage.jsp with hotel name as a query parameter
     function showHotelDetails(hotelName) {
       // Redirect to HotelDetailsPage.jsp with hotel name as a URL parameter
       window.location.href = "HotelDetailsPage.jsp";
+    }
+
+    const searchBtn = document.getElementById('search-hotels-btn');
+    if (searchBtn) {
+      searchBtn.addEventListener('click', function() {
+        const originalText = this.innerHTML;
+        this.disabled = true;
+        this.innerHTML = 'Searching...';
+        setTimeout(() => {
+          this.disabled = false;
+          this.innerHTML = originalText;
+        }, 1500);
+      });
     }
   </script>
 
