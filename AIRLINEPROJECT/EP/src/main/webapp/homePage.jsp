@@ -28,17 +28,24 @@
       <div class="hero-content">
         <h1>Discover Your Next Adventure</h1>
         <p>Find and book the best flights and hotels worldwide</p>
-        <form action="flights.jsp" method="GET" class="search-form">
-          <input type="text" name="fromCity" placeholder="Departure City" required>
-          <input type="text" name="toCity" placeholder="Arrival City" required>
-          <input type="date" name="date" required>
-          <select name="passengers">
+        <form action="flights.jsp" method="GET" class="search-form" id="flight-search-form">
+          <label for="from-city" class="sr-only">Departure City</label>
+          <input type="text" id="from-city" name="fromCity" placeholder="Departure City" required>
+
+          <label for="to-city" class="sr-only">Arrival City</label>
+          <input type="text" id="to-city" name="toCity" placeholder="Arrival City" required>
+
+          <label for="departure-date" class="sr-only">Departure Date</label>
+          <input type="date" id="departure-date" name="date" required>
+
+          <label for="passengers-select" class="sr-only">Number of Passengers</label>
+          <select id="passengers-select" name="passengers">
             <option value="1">1 Adult</option>
             <option value="2">2 Adults</option>
             <option value="3">3 Adults</option>
             <option value="4">4 Adults</option>
           </select>
-          <button type="submit">Search Flights</button>
+          <button type="submit" id="search-button">Search Flights</button>
         </form>
       </div>
     </div>
@@ -80,5 +87,24 @@
     </div>
   </section>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const dateInput = document.getElementById('departure-date');
+      if (dateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+      }
+
+      const searchForm = document.getElementById('flight-search-form');
+      const searchButton = document.getElementById('search-button');
+
+      if (searchForm && searchButton) {
+        searchForm.addEventListener('submit', function() {
+          searchButton.disabled = true;
+          searchButton.textContent = 'Searching...';
+        });
+      }
+    });
+  </script>
 </body>
 </html>

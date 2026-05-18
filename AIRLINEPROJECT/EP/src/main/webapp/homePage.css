@@ -58,6 +58,39 @@
   background-color: #1e40af;
   color: #ffffff;
   cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+.search-form button:hover:not(:disabled) {
+  background-color: #1c3a96;
+}
+
+.search-form button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.search-form button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.search-form input:focus-visible,
+.search-form select:focus-visible {
+  outline: 3px solid #60a5fa;
+  outline-offset: 2px;
+}
+
+/* Screen Reader Only Utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
 /* Featured Destinations Section */
