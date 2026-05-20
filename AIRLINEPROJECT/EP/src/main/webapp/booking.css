@@ -61,7 +61,29 @@ body {
   background-color: #3b82f6;
   color: white;
   text-align: center;
+  border: none;
   border-radius: 0.5rem;
   cursor: pointer;
   font-weight: bold;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+.btn-submit:hover {
+  background-color: #2563eb;
+}
+
+.btn-submit:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.btn-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  background-color: #94a3b8;
+}
+
+.required {
+  color: #ef4444;
+  margin-left: 0.25rem;
 }
