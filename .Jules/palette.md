@@ -1,3 +1,7 @@
 ## 2025-05-15 - [Improving Form Usability & Accessibility]
 **Learning:** In legacy JSP projects, nested interactive elements (like `<button>` inside `<a>`) are common but break accessibility and HTML semantics. Converting these to single, well-styled semantic elements improves screen reader compatibility and prevents unexpected behavior. Adding a simple password visibility toggle significantly enhances UX by reducing login/registration friction.
 **Action:** Always check for nested interactive elements and replace them with single semantic ones. Use vanilla JS for simple UI enhancements in projects where modern framework-based solutions aren't available.
+
+## 2026-05-21 - [Enhancing Payment UX with Input Masking and Feedback]
+**Learning:** Real-time input masking for credit cards (4-4-4-4) and expiry dates (MM/YY) provides immediate validation and a "premium" feel to legacy applications. Maintaining cursor position during masking is a critical micro-UX detail. Additionally, replacing navigation-based buttons with true form submissions and a "Processing..." loading state prevents duplicate payments and improves user confidence.
+**Action:** Implement vanilla JS input masking and submission loading states for all payment-related forms. Ensure all inputs are correctly linked to labels via `id`/`for` attributes and decorative elements are hidden from screen readers using `aria-hidden`.
