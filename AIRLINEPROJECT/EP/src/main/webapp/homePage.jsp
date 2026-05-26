@@ -28,11 +28,15 @@
       <div class="hero-content">
         <h1>Discover Your Next Adventure</h1>
         <p>Find and book the best flights and hotels worldwide</p>
-        <form action="flights.jsp" method="GET" class="search-form">
-          <input type="text" name="fromCity" placeholder="Departure City" required>
-          <input type="text" name="toCity" placeholder="Arrival City" required>
-          <input type="date" name="date" required>
-          <select name="passengers">
+        <form action="flights.jsp" method="GET" class="search-form" id="search-form">
+          <label for="fromCity" class="sr-only">Departure City</label>
+          <input type="text" id="fromCity" name="fromCity" placeholder="Departure City" required>
+          <label for="toCity" class="sr-only">Arrival City</label>
+          <input type="text" id="toCity" name="toCity" placeholder="Arrival City" required>
+          <label for="date" class="sr-only">Departure Date</label>
+          <input type="date" id="date" name="date" required>
+          <label for="passengers" class="sr-only">Passengers</label>
+          <select id="passengers" name="passengers">
             <option value="1">1 Adult</option>
             <option value="2">2 Adults</option>
             <option value="3">3 Adults</option>
@@ -80,5 +84,27 @@
     </div>
   </section>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set min date to today using local timezone
+      const dateInput = document.getElementById('date');
+      if (dateInput) {
+        const today = new Date().toLocaleDateString('en-CA');
+        dateInput.setAttribute('min', today);
+      }
+
+      // Loading state for search button
+      const searchForm = document.getElementById('search-form');
+      if (searchForm) {
+        searchForm.addEventListener('submit', function() {
+          const btn = this.querySelector('button[type="submit"]');
+          if (btn) {
+            btn.innerHTML = 'Searching...';
+            btn.disabled = true;
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>
