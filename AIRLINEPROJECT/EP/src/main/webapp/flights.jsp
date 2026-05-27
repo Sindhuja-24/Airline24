@@ -86,38 +86,38 @@
     </nav>
 
     <div class="container">
-        <div class="search-bar">
+        <form action="flights.jsp" method="GET" class="search-bar" id="flight-search-form">
             <div>
                 <label for="from-city">From:</label>
-                <input type="text" id="from-city" placeholder="Enter departure city">
+                <input type="text" id="from-city" name="fromCity" placeholder="Enter departure city" required>
             </div>
             <div>
                 <label for="to-city">To:</label>
-                <input type="text" id="to-city" placeholder="Enter destination city">
+                <input type="text" id="to-city" name="toCity" placeholder="Enter destination city" required>
             </div>
             <div>
                 <label for="departure-date">Departure:</label>
-                <input type="date" id="departure-date" placeholder="dd-mm-yyyy">
+                <input type="date" id="departure-date" name="date" placeholder="dd-mm-yyyy" required>
             </div>
             <div>
                 <label for="class">Class:</label>
-                <select id="class">
-                    <option>Economy</option>
-                    <option>Business</option>
-                    <option>First Class</option>
+                <select id="class" name="class">
+                    <option value="Economy">Economy</option>
+                    <option value="Business">Business</option>
+                    <option value="First Class">First Class</option>
                 </select>
             </div>
             <div>
                 <label for="passengers">Passengers:</label>
-                <select id="passengers">
-                    <option>1 Passenger</option>
-                    <option>2 Passengers</option>
-                    <option>3 Passengers</option>
-                    <option>4 Passengers</option>
+                <select id="passengers" name="passengers">
+                    <option value="1">1 Passenger</option>
+                    <option value="2">2 Passengers</option>
+                    <option value="3">3 Passengers</option>
+                    <option value="4">4 Passengers</option>
                 </select>
             </div>
-            <button class="search-button">Search</button>
-        </div>
+            <button type="submit" class="search-button" id="search-btn">Search</button>
+        </form>
 
         <!-- Flight Cards Section -->
 
@@ -251,5 +251,29 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set minimum date to today
+            const dateInput = document.getElementById('departure-date');
+            if (dateInput) {
+                const today = new Date().toLocaleDateString('en-CA');
+                dateInput.setAttribute('min', today);
+            }
+
+            // Form submission loading state
+            const searchForm = document.getElementById('flight-search-form');
+            const searchBtn = document.getElementById('search-btn');
+
+            if (searchForm && searchBtn) {
+                searchForm.addEventListener('submit', function() {
+                    searchBtn.innerHTML = 'Searching...';
+                    searchBtn.disabled = true;
+                    searchBtn.style.opacity = '0.7';
+                    searchBtn.style.cursor = 'not-allowed';
+                });
+            }
+        });
+    </script>
 </body>
 </html>
