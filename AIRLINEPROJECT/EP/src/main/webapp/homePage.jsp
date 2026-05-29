@@ -28,17 +28,25 @@
       <div class="hero-content">
         <h1>Discover Your Next Adventure</h1>
         <p>Find and book the best flights and hotels worldwide</p>
-        <form action="flights.jsp" method="GET" class="search-form">
-          <input type="text" name="fromCity" placeholder="Departure City" required>
-          <input type="text" name="toCity" placeholder="Arrival City" required>
-          <input type="date" name="date" required>
-          <select name="passengers">
+        <form action="flights.jsp" method="GET" class="search-form" id="search-form">
+          <label for="departure-city" class="sr-only">Departure City</label>
+          <input type="text" id="departure-city" name="fromCity" placeholder="Departure City" required>
+
+          <label for="arrival-city" class="sr-only">Arrival City</label>
+          <input type="text" id="arrival-city" name="toCity" placeholder="Arrival City" required>
+
+          <label for="departure-date" class="sr-only">Departure Date</label>
+          <input type="date" id="departure-date" name="date" required>
+
+          <label for="passenger-count" class="sr-only">Passengers</label>
+          <select id="passenger-count" name="passengers">
             <option value="1">1 Adult</option>
             <option value="2">2 Adults</option>
             <option value="3">3 Adults</option>
             <option value="4">4 Adults</option>
           </select>
-          <button type="submit">Search Flights</button>
+
+          <button type="submit" id="search-button">Search Flights</button>
         </form>
       </div>
     </div>
@@ -80,5 +88,25 @@
     </div>
   </section>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set min date to today
+      const dateInput = document.getElementById('departure-date');
+      if (dateInput) {
+        dateInput.min = new Date().toLocaleDateString('en-CA');
+      }
+
+      // Loading state for form submission
+      const searchForm = document.getElementById('search-form');
+      const searchButton = document.getElementById('search-button');
+
+      if (searchForm && searchButton) {
+        searchForm.addEventListener('submit', function() {
+          searchButton.innerHTML = 'Searching...';
+          searchButton.disabled = true;
+        });
+      }
+    });
+  </script>
 </body>
 </html>
