@@ -28,17 +28,24 @@
       <div class="hero-content">
         <h1>Discover Your Next Adventure</h1>
         <p>Find and book the best flights and hotels worldwide</p>
-        <form action="flights.jsp" method="GET" class="search-form">
-          <input type="text" name="fromCity" placeholder="Departure City" required>
-          <input type="text" name="toCity" placeholder="Arrival City" required>
-          <input type="date" name="date" required>
-          <select name="passengers">
+        <form action="flights.jsp" method="GET" class="search-form" id="search-form">
+          <label for="fromCity" class="sr-only">Departure City</label>
+          <input type="text" id="fromCity" name="fromCity" placeholder="Departure City" required>
+
+          <label for="toCity" class="sr-only">Arrival City</label>
+          <input type="text" id="toCity" name="toCity" placeholder="Arrival City" required>
+
+          <label for="date" class="sr-only">Departure Date</label>
+          <input type="date" id="date" name="date" required>
+
+          <label for="passengers" class="sr-only">Passengers</label>
+          <select id="passengers" name="passengers">
             <option value="1">1 Adult</option>
             <option value="2">2 Adults</option>
             <option value="3">3 Adults</option>
             <option value="4">4 Adults</option>
           </select>
-          <button type="submit">Search Flights</button>
+          <button type="submit" id="search-btn">Search Flights</button>
         </form>
       </div>
     </div>
@@ -80,5 +87,22 @@
     </div>
   </section>
 
+  <script>
+    // Set minimum date to today
+    const dateInput = document.getElementById('date');
+    if (dateInput) {
+      dateInput.min = new Date().toISOString().split('T')[0];
+    }
+
+    // Add loading state to form submission
+    const searchForm = document.getElementById('search-form');
+    const searchBtn = document.getElementById('search-btn');
+    if (searchForm && searchBtn) {
+      searchForm.addEventListener('submit', function() {
+        searchBtn.innerHTML = 'Searching...';
+        searchBtn.disabled = true;
+      });
+    }
+  </script>
 </body>
 </html>
