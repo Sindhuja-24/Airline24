@@ -13,11 +13,11 @@
   <!-- Navigation Bar -->
   <nav class="main-menu top-menu">
     <ul>
-      <li class="active"><a href="homePage.jsp">Home</a></li>
+      <li><a href="homePage.jsp">Home</a></li>
       <li><a href="Login.jsp">Login</a></li>
       <li><a href="booking.jsp">Booking</a></li>
       <li><a href="flights.jsp">Flights</a></li>
-      <li><a href="HotelsPage.jsp">Hotels</a></li>
+      <li class="active"><a href="HotelsPage.jsp">Hotels</a></li>
       <li><a href="about.jsp">About Us</a></li>
       <li><a href="contact.jsp">Contact Us</a></li>
     </ul>
@@ -30,25 +30,25 @@
     <header class="header">
       <div class="search-filters">
         <div class="filter">
-          <label for="location">Location</label>
+          <label for="location"><span aria-hidden="true">📍</span> Location</label>
           <input type="text" id="location" value="New York">
           <i class="lucide-map-pin"></i>
         </div>
 
         <div class="filter">
-          <label for="check-in">Check-in</label>
+          <label for="check-in"><span aria-hidden="true">📅</span> Check-in</label>
           <input type="date" id="check-in">
           <i class="lucide-calendar"></i>
         </div>
 
         <div class="filter">
-          <label for="check-out">Check-out</label>
+          <label for="check-out"><span aria-hidden="true">📅</span> Check-out</label>
           <input type="date" id="check-out">
           <i class="lucide-calendar"></i>
         </div>
 
         <div class="filter">
-          <label for="guests">Guests</label>
+          <label for="guests"><span aria-hidden="true">👥</span> Guests</label>
           <select id="guests">
             <option value="1">1 Guest</option>
             <option value="2" selected>2 Guests</option>
