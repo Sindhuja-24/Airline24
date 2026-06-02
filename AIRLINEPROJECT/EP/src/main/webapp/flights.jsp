@@ -75,10 +75,10 @@
 <body>
     <nav class="main-menu top-menu">
         <ul>
-            <li class="active"><a href="homePage.jsp">Home</a></li>
+            <li><a href="homePage.jsp">Home</a></li>
             <li><a href="Login.jsp">Login</a></li>
             <li><a href="booking.jsp">Booking</a></li>
-            <li><a href="flights.jsp">Flights</a></li>
+            <li class="active"><a href="flights.jsp">Flights</a></li>
             <li><a href="HotelsPage.jsp">Hotels</a></li>
             <li><a href="about.jsp">About Us</a></li>
             <li><a href="contact.jsp">Contact Us</a></li>
